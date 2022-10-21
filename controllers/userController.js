@@ -17,7 +17,7 @@ const loginUser = async(req, res)=>{
         return res.status(400).json({msg: 'All feilds must be filled'})
     }
     const user = await User.findOne({email})
-    if(!user) return res.status(400).json("incorect email")
+    if(!user) return res.status(400).json({msg:"incorect email"})
 
     const match  = await bcrypt.compare(password, user.password)
     if(!match) return res.status(400).json("incorect password")
