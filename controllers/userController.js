@@ -20,7 +20,7 @@ const loginUser = async(req, res)=>{
     if(!user) return res.status(400).json({msg:"incorect email"})
 
     const match  = await bcrypt.compare(password, user.password)
-    if(!match) return res.status(400).json("incorect password")
+    if(!match) return res.status(400).json({msg:"incorect password"})
 
     const token = createToken(user._id)
     res.status(200).json({email, token})    
